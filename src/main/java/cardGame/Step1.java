@@ -1,9 +1,6 @@
 package cardGame;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Step1 {
     public static void main(String[] args) {
@@ -43,7 +40,7 @@ public class Step1 {
     }
 
     // 처음에 X 출력하기
-    public static void printInitialGrid(){
+    public static void printInitialGrid() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 6; j++) {
                 System.out.print("X ");
@@ -52,7 +49,26 @@ public class Step1 {
         }
     }
 
+    // 사용자에게 좌표 입력받기
+    public static int[][] getUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        int[][] inputs = new int[2][2]; // 좌표 크기 지정
 
+        for (int i = 0; i < 2; i++) {
+            while (true) { // true 면 계속 실행
+                System.out.print("입력 " + (i + 1) + "? ");
+                String input = scanner.nextLine();
 
+                int[] coordinates = validateInput(input); // 입력 유효성 검증 메소드 구현 해야함
+                if (coordinates != null) {
+                    inputs[i] = coordinates;
+                    break; // 가장 가까운 반복문 (즉 이 코드에서는 while문) 종료 시킴
+                }
+            }
+        }
+        return inputs;
+    }
+
+    public static
 
 }

@@ -12,6 +12,7 @@ public class Step1 {
         System.out.println(generateNumbers());
         System.out.println(generateNumbers().size());
         System.out.println(Arrays.deepToString(printGrid(cards)));
+        printInitialGrid();
 
     }
 
@@ -40,6 +41,18 @@ public class Step1 {
         }
         return grid;
     }
+
+    // 처음에 X 출력하기
+    public static void printInitialGrid(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 6; j++) {
+                System.out.print("X ");
+            }
+            System.out.println();
+        }
+    }
+
+
 
 
 }

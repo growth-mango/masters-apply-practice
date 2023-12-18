@@ -4,15 +4,28 @@ import java.util.*;
 
 public class Step1 {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         List<Integer> cards = generateNumbers();
-
-        System.out.println(generateNumbers());
-        System.out.println(generateNumbers().size());
-        System.out.println(Arrays.deepToString(printGrid(cards)));
+        int[][] grid = printGrid(cards);
         printInitialGrid();
-        int[][] inputs = getUserInput();
-        revealCards(printGrid(cards), inputs);
-        printUpdateGrid(printGrid(cards), inputs);
+        int attemptNumber = 1;
+        int remainingCards = 18;
+
+        while (!isGameOver(grid)) {
+            int[][] userInput = getUserInput(attemptNumber, remainingCards);
+            revealCards(grid, userInput);
+            printUpdateGrid(grid, userInput);
+            if (checkAndRemoveCards(grid, userInput)) {
+                System.out.println("맞췄습니다!");
+                remainingCards -= 2;
+            }
+            if (remainingCards == 0 || !isMatchingPairAvaliable(grid)) {
+                System.out.println("축하합니다! 모든 카드를 맞췄습니다.");
+                break;
+            }
+            attemptNumber++;
+        }
+        scanner.close();
 
     }
 
@@ -53,11 +66,11 @@ public class Step1 {
     }
 
     // 사용자에게 좌표 입력받기
-    public static int[][] getUserInput() {
+    public static int[][] getUserInput(int attemptNumber, int remainingCards) {
         Scanner scanner = new Scanner(System.in);
         int[][] inputs = new int[2][2];
 
-        System.out.println("좌표를 입력하세요.");
+        System.out.printf("<시도 %d, 남은 카드 : %d>좌표를 입력하세요.\n", attemptNumber, remainingCards);
 
         for (int i = 0; i < 2; i++) {
             while (true) {
@@ -185,6 +198,4 @@ public class Step1 {
         }
         return false;
     }
-
-
 }

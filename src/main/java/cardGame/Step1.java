@@ -124,11 +124,29 @@ public class Step1 {
     // 해당 좌표가 뒤집힌 좌표인지 확인하기
     public static boolean isCoordinateRevealed(int row, int col, int[][] revealCoordinates) {
         for (int[] coord : revealCoordinates) {
-            if (coord[0]-1 == row && coord[1]-1 == col) {
+            if (coord[0] - 1 == row && coord[1] - 1 == col) {
                 return true;
             }
         }
         return false;
     }
+
+    // 뒤집은 카드의 숫자가 서로 일치하는지 검증한 후 카드 제거
+    public static boolean checkAndRemoveCards(int[][] grid, int[][] inputs) {
+        int firstRow = inputs[0][0] - 1;
+        int firstCol = inputs[0][1] - 1;
+        int secondRow = inputs[1][0] - 1;
+        int secondCol = inputs[1][1] - 1;
+
+        // 두 카드의 숫자가 일치하는지 확인하기
+        if (grid[firstRow][firstCol] == grid[secondRow][secondCol]) {
+            grid[firstRow][firstCol] = 0; // 첫 번째 좌표의 카드 제거하기
+            grid[secondRow][secondCol] = 0; // 두 번째 좌표의 카드 제거하기
+            return true;
+        }
+        return false;
+    }
+
+
 
 }

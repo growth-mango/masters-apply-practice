@@ -147,6 +147,13 @@ public class Step1 {
         return false;
     }
 
+    // 게임 종료 로직 ( 남은 카드가 없거나 맞출 수 있는 짝이 없을 경우 종료 )
+    public static boolean isGameOver(int[][] grid) {
+        return !isRemainingCards(grid) || !isMatchingPairAvaliable(grid); //
+    }
+
+    /
+
 
 
 }

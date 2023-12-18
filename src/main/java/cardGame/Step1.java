@@ -168,9 +168,23 @@ public class Step1 {
 
     // 매칭할 카드가 남았는지 확인하는 로직
     public static boolean isMatchingPairAvaliable(int[][] grid) {
+        int[] cardCount = new int[9]; // 1부터 8까지의 카드 개수를 저장
 
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                int card = grid[i][j];
+                if (card != 0) {
+                    cardCount[card]++;
+                }
+            }
+        }
+        for (int count : cardCount) {
+            if (count > 1) {
+                return true;
+            }
+        }
+        return false;
     }
-
 
 
 }

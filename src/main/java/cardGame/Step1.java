@@ -152,7 +152,24 @@ public class Step1 {
         return !isRemainingCards(grid) || !isMatchingPairAvaliable(grid); //
     }
 
-    /
+    // 남은 카드가 있는지 확인하는 로직
+    public static boolean isRemainingCards(int[][] grid) {
+        int remainingCards = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] != 0) {
+                    remainingCards++;
+                }
+            }
+        }
+        return remainingCards > 1; // 남은 카드가 있는 경우 true, 0장인 경우 false
+    }
+
+    // 매칭할 카드가 남았는지 확인하는 로직
+    public static boolean isMatchingPairAvaliable(int[][] grid) {
+
+    }
 
 
 

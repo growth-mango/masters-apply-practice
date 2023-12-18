@@ -11,7 +11,8 @@ public class Step1 {
         System.out.println(Arrays.deepToString(printGrid(cards)));
         printInitialGrid();
         int[][] inputs = getUserInput();
-        revealCards(printGrid(cards),inputs);
+        revealCards(printGrid(cards), inputs);
+        printUpdateGrid(printGrid(cards), inputs);
 
     }
 
@@ -99,11 +100,35 @@ public class Step1 {
 
     // 사용자에게 입력받은 좌표의 카드를 뒤집어서 보여주기
     public static void revealCards(int[][] grid, int[][] inputs) {
-        for(int[] input : inputs){
-            int row = input[0] -1 ; // 입력은 1부터, 인덱스는 0부터 시작하니까 조정
-            int col = input[1] -1 ;
+        for (int[] input : inputs) {
+            int row = input[0] - 1; // 입력은 1부터, 인덱스는 0부터 시작하니까 조정
+            int col = input[1] - 1;
             System.out.println(grid[row][col]);
         }
+    }
+
+    // 변경된 그리드 출력
+    public static void printUpdateGrid(int[][] grid, int[][] revealCoordinates) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (isCoordinateRevealed(i, j, revealCoordinates)) {
+                    System.out.print(grid[i][j] + " ");
+                } else {
+                    System.out.print("X ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    // 해당 좌표가 뒤집힌 좌표인지 확인하기
+    public static boolean isCoordinateRevealed(int row, int col, int[][] revealCoordinates) {
+        for (int[] coord : revealCoordinates) {
+            if (coord[0]-1 == row && coord[1]-1 == col) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
